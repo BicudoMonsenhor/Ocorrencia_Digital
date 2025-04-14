@@ -3,28 +3,99 @@
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8">
-  <title>Listar Ocorrências</title>
+  <title>Lista de Ocorrências</title>
   <style>
-    body { font-family: Arial, sans-serif; background: #f8f8f8; padding: 20px; }
-    h2 { text-align: center; color: #333; }
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #0078D4 0%, #005A9E 100%);
+      color: #333;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background-color: #003c70;
+      color: white;
+      padding: 20px;
+      text-align: center;
+      font-size: 20px;
+      font-weight: bold;
+    }
+    .menu {
+      background-color: #005a9e;
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      padding: 10px 20px;
+    }
+    .menu button {
+      padding: 8px 14px;
+      background-color: #0078D4;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      color: white;
+      font-weight: bold;
+    }
+    .menu button:hover {
+      background-color: #004d87;
+    }
+    .container {
+      max-width: 900px;
+      margin: auto;
+      background: white;
+      padding: 30px;
+      border-radius: 0 0 12px 12px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+    }
     input {
-      width: 100%; padding: 10px; margin-bottom: 20px;
-      font-size: 16px; border: 1px solid #ccc; border-radius: 5px;
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 20px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
     }
     .resultado {
-      background: white; padding: 15px; border-radius: 10px;
-      box-shadow: 0 0 8px rgba(0,0,0,0.1); margin-bottom: 15px;
+      background: #f9f9f9;
+      padding: 15px;
+      border-radius: 10px;
+      margin-bottom: 15px;
+      border-left: 5px solid #0078D4;
     }
-    .resultado p { margin: 5px 0; }
+    .resultado p {
+      margin: 4px 0;
+    }
+    .botoes {
+      margin-top: 10px;
+    }
+    .botoes button {
+      margin-right: 10px;
+      padding: 6px 12px;
+      border: none;
+      background: #0078D4;
+      color: white;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .botoes button:hover {
+      background: #005a9e;
+    }
   </style>
 </head>
 <body>
-  <h2>Buscar Ocorrências por Nome do Aluno</h2>
-  <input type="text" id="filtro" placeholder="Digite o nome do aluno..." />
-  <div id="resultados"></div>
+  <header>Sistema de Ocorrências</header>
+  <div class="menu">
+    <span>🔎 Filtrar Ocorrências por Nome</span>
+    <button onclick="deletarTodas()">🗑️ Apagar Todas</button>
+  </div>
+  <div class="container">
+    <input type="text" id="filtro" placeholder="Digite o nome do aluno..." />
+    <div id="resultados"></div>
+  </div>
 
   <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore-compat.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   <script>
     const firebaseConfig = {
       apiKey: "AIzaSyDBe67kG6oru6nUMTrazQFDeMlZWrWZbzY",
@@ -54,11 +125,59 @@
             <p><strong>Descrição:</strong> ${data.descricao}</p>
             <p><strong>Assinatura:</strong> ${data.assinatura}</p>
             <p><strong>Data:</strong> ${data.dataHora}</p>
+            <div class="botoes">
+              <button onclick='gerarPDF(${JSON.stringify(data).replace(/'/g, "\'").replace(/"/g, '&quot;')})'>Salvar PDF</button>
+              <button onclick="apagarOcorrencia('${doc.id}', this)">Apagar</button>
+            </div>
           `;
           container.appendChild(div);
         }
       });
     });
+
+    function gerarPDF(data) {
+      const { jsPDF } = window.jspdf;
+      const doc = new jsPDF();
+      doc.setFontSize(12);
+      let y = 10;
+      doc.text("Registro de Ocorrência", 10, y);
+      y += 10;
+      doc.text(`Aluno: ${data.nomeAluno}`, 10, y); y += 10;
+      doc.text(`Série: ${data.serie}`, 10, y); y += 10;
+      doc.text(`Professor: ${data.professor}`, 10, y); y += 10;
+      doc.text(`Assinatura: ${data.assinatura}`, 10, y); y += 10;
+      doc.text(`Data: ${data.dataHora}`, 10, y); y += 10;
+      doc.text("Ocorrências:", 10, y); y += 10;
+      data.ocorrencias.forEach(o => { doc.text(`- ${o}`, 10, y); y += 10; });
+      doc.text("Descrição:", 10, y); y += 10;
+      doc.text(data.descricao, 10, y);
+      doc.save(`Ocorrencia_${data.nomeAluno}.pdf`);
+    }
+
+    function apagarOcorrencia(id, btn) {
+      if (confirm("Tem certeza que deseja apagar esta ocorrência?")) {
+        db.collection("ocorrencias").doc(id).delete().then(() => {
+          btn.closest(".resultado").remove();
+          alert("Ocorrência apagada com sucesso.");
+        }).catch(err => {
+          alert("Erro ao apagar: " + err.message);
+        });
+      }
+    }
+
+    function deletarTodas() {
+      if (!confirm("Você realmente deseja apagar TODAS as ocorrências do Firebase?")) return;
+      db.collection("ocorrencias").get().then(snapshot => {
+        const batch = db.batch();
+        snapshot.forEach(doc => batch.delete(doc.ref));
+        return batch.commit();
+      }).then(() => {
+        alert("Todas as ocorrências foram apagadas.");
+        document.getElementById("resultados").innerHTML = "";
+      }).catch(err => {
+        alert("Erro ao apagar todas: " + err.message);
+      });
+    }
   </script>
 </body>
 </html>
