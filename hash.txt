@@ -1,0 +1,5 @@
+
+HASH DE INTEGRIDADE (DEMO)
+
+index.html -> Versão simplificada
+listar.html -> Exibe todas as ocorrências por nome, série e professor
