@@ -77,6 +77,24 @@
   </style>
 </head>
 <body>
+
+<div style="text-align: right; margin: 15px 20px 0;">
+  <button onclick="acessarLista()" style="padding: 8px 14px; background-color: #003c70; color: white; border: none; border-radius: 6px; cursor: pointer;">
+    🔒 Acessar Lista
+  </button>
+</div>
+
+<script>
+  function acessarLista() {
+    const senha = prompt("Digite a senha para acessar a lista:");
+    if (senha === "admin123") {
+      window.location.href = "listar.html";
+    } else {
+      alert("Senha incorreta. Acesso negado.");
+    }
+  }
+</script>
+
   <header>Registrar Ocorrência</header>
   <div class="container">
     <h2>Formulário de Ocorrência Disciplinar</h2>
@@ -90,58 +108,8 @@
     <label for="professor">Professor/Funcionário:</label>
     <select id="professor">
       <option value="">Selecione o Professor</option>
-      <option>ALINE DAL PONTE SABBAG</option>
-            <option>ALINE PRISCILA GARCIA DA SILVA</option>
-            <option>ANDREIA DE FATIMA GOMES PIEMONTE</option>
-            <option>ANTONIO JOSÉ DO SANTOS JUNIOR</option>
-            <option>CAIO HENRIQUE ESTRELA CARDIA</option>
-            <option>CLEBER ALBERTO GOMES</option>
-            <option>CRISTINA BALDINOTI</option>
-            <option>EDCARLOS DOS SANTOS</option>
-            <option>EDINEIA APARECIDA DE SOUSA</option>
-            <option>ELIANE ANDREA DIOMEDES</option>
-            <option>ELIZA GILIOLLI DOS SANTOS</option>
-            <option>FELIPE BEIRO DE ALMEIDA</option>
-            <option>FLAVIO HENRIQUE CHAVES FILHO</option>
-            <option>GABRIEL RODRIGUES DA SILVA</option>
-            <option>GISLAINE DIAS CAPUTO</option>
-            <option>GRAZIELLE CHRISTINE MARANGONI SCARMANHÃ</option>
-            <option>GRAZIELLE DE OLIVEIRA SANTOS</option>
-            <option>ITALO BERTONCINI</option>
-            <option>IZAIAS NOGUEIRA RODRIGUES</option>
-            <option>JANAINA TOGNON</option>
-            <option>JAQUELINE PADERES SCORSAFAVA GARCIA</option>
-            <option>JOSELILIAN LOPES MIRALHA</option>
-            <option>JULIANA DE FATIMA SILVA SEGANTIN</option>
-            <option>KAREN REGINA TAN GALINA</option>
-            <option>KLEER GONÇALVES DOS SANTOS</option>
-            <option>LEANDRO HENRIQUE DE SOUZA BEZERRA</option>
-            <option>LUCILENE ARAUJO ROMANIW RAYMUNDO</option>
-            <option>LURDES DOS SANTOS ELIAS LIMA</option>
-            <option>MAGDA APARECIDA DE OLIVEIRA PRADO</option>
-            <option>MARCIA CRISTINA SIGEMURA</option>
-            <option>MARCIO ENRIQUE STANCKEVIZ</option>
-            <option>MARIA CANDIDA BRANCO DOS SANTOS</option>
-            <option>MARIA LUIZA MARTINS DE ARAUJO</option>
-            <option>MARIANA PAIVA RAMOS</option>
-            <option>MARIANA SAKER DE CASTRO PAIVA</option>
-            <option>MATHEUS SANTOS DE OLIVEIRA</option>
-            <option>MILCE FERREIRA DE MOURA</option>
-            <option>MIRIAM BEIRO DE ALMEIDA</option>
-            <option>NATHÁLIA VERONESE MARTINS</option>
-            <option>ORIEL DE OLIVEIRA E SILVA</option>
-            <option>RAFAEL MARTINS DOS SANTOS</option>
-            <option>RAQUEL CRISTINA ROSSIGALLI BOLFI</option>
-            <option>RENATO DAVID VALENTE</option>
-            <option>RODRIGO BATISTA</option>
-            <option>ROSANA APARECIDA ROSSI NOGUEIRA</option>
-            <option>SAMUEL MACEDO PERICO</option>
-            <option>SAVIA BETHANIA CAVALCANTI</option>
-            <option>SILENE BERTASSI</option>
-            <option>SONIA MARIA NABAS DOS SANTOS</option>
-            <option>SUELI BATISTETTI VICENTE</option>
-            <option>SUZANA CARTLA VIANA JANUÁRIO</option>
-            <option>VERA CLAUDIA FERRES ANSUINO</option>
+      <option>RENATO DAVID VALENTE</option>
+      <option>ELIZA GILIOLLI DOS SANTOS</option>
     </select>
 
     <label>Tipo de Ocorrência:</label>
@@ -165,7 +133,7 @@
     <label for="assinatura">Assinatura Digital:</label>
     <input type="text" id="assinatura" />
 
-    <button onclick="enviarOcorrencia()">Registrar a Ocorrência</button>
+    <button onclick="enviarOcorrencia()">Registrar no Firebase</button>
   </div>
 
   <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
