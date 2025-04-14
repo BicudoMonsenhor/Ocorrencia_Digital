@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Registro de Ocorrência Disciplinar</title>
+    <style>
+        body {
+            background-color: #0078D4; /* Azul moderno do Windows 2023 */
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            width: 100vw;
+            overflow: hidden;
+        }
+        .container {
+            width: 100%;
+            height: 100%;
+            background-color: #f0f0f0;
+            padding: 20px;
+            box-sizing: border-box;
+            overflow-y: auto;
+            position: relative;
+        }
+        .header-img {
+            width: 100%;
+            height: auto;
+        }
+        h2 {
+            margin-top: 10px;
+            color: #333;
+        }
+        label, select, input, textarea, button {
+            width: 100%;
+            margin-bottom: 10px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        button {
+            background-color: #0078D4;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+            transition: transform 0.1s, box-shadow 0.1s;
+        }
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.2);
+            background-color: #005A9E;
+        }
+        .checkbox-group div {
+            flex: 1 1 45%;
+            margin: 10px 0;
+            display: flex;
+            align-items: center;
+        }
+        
+        .checkbox-group input[type="checkbox"] {
+            margin-right: 10px;
+        }
+
+        #dataAtual {
+            font-size: 14px;
+            color: #333;
+            text-align: right;
+            margin-bottom: 20px;
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="bicudo-2025.jpg" alt="Bicudo 2025" class="header-img">
+        <h2>Registro de Ocorrência Disciplinar</h2>
+        
+        <!-- Exibição da data e dia automaticamente -->
+        <p id="dataAtual"></p>
+
+        <label for="nomeAluno">Nome do Aluno:</label>
+        <input type="text" id="nomeAluno" placeholder="Digite o nome do aluno">
+
+        <label for="serie">Série:</label>
+        <input type="text" id="serie" placeholder="Digite a série do aluno">
+
+        <label for="professor">Professor/Funcionário:</label>
+        <select id="professor">
+            <option value="">Selecione o Professor</option>
+            <option>ALINE DAL PONTE SABBAG</option>
+            <option>ALINE PRISCILA GARCIA DA SILVA</option>
+            <option>ANDREIA DE FATIMA GOMES PIEMONTE</option>
+            <option>ANTONIO JOSÉ DO SANTOS JUNIOR</option>
+            <option>CAIO HENRIQUE ESTRELA CARDIA</option>
+            <option>CLEBER ALBERTO GOMES</option>
+            <option>CRISTINA BALDINOTI</option>
+            <option>DARLENE MALDONADO DOS SANTOS</option>
+            <option>EDCARLOS DOS SANTOS</option>
+            <option>EDINEIA APARECIDA DE SOUSA</option>
+            <option>ELIANE ANDREA DIOMEDES</option>
+            <option>ELIZA GILIOLLI DOS SANTOS</option>
+            <option>FELIPE BEIRO DE ALMEIDA</option>
+            <option>FLAVIO HENRIQUE CHAVES FILHO</option>
+            <option>GABRIEL RODRIGUES DA SILVA</option>
+            <option>GISLAINE DIAS CAPUTO</option>
+            <option>GRAZIELLE CHRISTINE MARANGONI SCARMANHÃ</option>
+            <option>GRAZIELLE DE OLIVEIRA SANTOS</option>
+            <option>ITALO BERTONCINI</option>
+            <option>IZAIAS NOGUEIRA RODRIGUES</option>
+            <option>JANAINA TOGNON</option>
+            <option>JAQUELINE PADERES SCORSAFAVA GARCIA</option>
+            <option>JOSELILIAN LOPES MIRALHA</option>
+            <option>JULIANA DE FATIMA SILVA SEGANTIN</option>
+            <option>KAREN REGINA TAN GALINA</option>
+            <option>KLEER GONÇALVES DOS SANTOS</option>
+            <option>LEANDRO HENRIQUE DE SOUZA BEZERRA</option>
+            <option>LUCILENE ARAUJO ROMANIW RAYMUNDO</option>
+            <option>LURDES DOS SANTOS ELIAS LIMA</option>
+            <option>MAGDA APARECIDA DE OLIVEIRA PRADO</option>
+            <option>MARCIA CRISTINA SIGEMURA</option>
+            <option>MARCIO ENRIQUE STANCKEVIZ</option>
+            <option>MARIA CANDIDA BRANCO DOS SANTOS</option>
+            <option>MARIA LUIZA MARTINS DE ARAUJO</option>
+            <option>MARIANA PAIVA RAMOS</option>
+            <option>MARIANA SAKER DE CASTRO PAIVA</option>
+            <option>MATHEUS SANTOS DE OLIVEIRA</option>
+            <option>MILCE FERREIRA DE MOURA</option>
+            <option>MIRIAM BEIRO DE ALMEIDA</option>
+            <option>NATHÁLIA VERONESE MARTINS</option>
+            <option>ORIEL DE OLIVEIRA E SILVA</option>
+            <option>RAFAEL MARTINS DOS SANTOS</option>
+            <option>RAQUEL CRISTINA ROSSIGALLI BOLFI</option>
+            <option>RENATO DAVID VALENTE</option>
+            <option>RODRIGO BATISTA</option>
+            <option>ROSANA APARECIDA ROSSI NOGUEIRA</option>
+            <option>SAMUEL MACEDO PERICO</option>
+            <option>SAVIA BETHANIA CAVALCANTI</option>
+            <option>SILENE BERTASSI</option>
+            <option>SONIA MARIA NABAS DOS SANTOS</option>
+            <option>SUELI BATISTETTI VICENTE</option>
+            <option>SUZANA CARTLA VIANA JANUÁRIO</option>
+            <option>VERA CLAUDIA FERRES ANSUINO</option>
+            <!-- Opções do professor omitidas para brevidade -->
+        </select>
+
+        <label>Tipo de Ocorrência:</label>
+        <div class="checkbox-group">
+            <div><label><input type="checkbox" value="Sem material em sala de aula"> Sem material em sala de aula</label></div>
+            <div><label><input type="checkbox" value="Chegou atrasado(a) em sala"> Chegou atrasado(a) em sala</label></div>
+            <div><label><input type="checkbox" value="Uso indevido fones e/ou celular"> Uso indevido fones e/ou celular</label></div>
+            <!-- Mais ocorrências omitidas -->
+        </div>
+
+        <textarea id="descricao" placeholder="Descreva a ocorrência" rows="3"></textarea>
+
+        <label for="assinatura">Assinatura Digital do Professor:</label>
+        <input type="text" id="assinatura" placeholder="Digite seu nome para assinatura digital">
+
+        <button onclick="salvarPDF()">Salvar como PDF</button>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script>
+        // Função para formatar a data e o dia da semana
+        function formatarData() {
+            const diasDaSemana = ["Domingo", "Segunda-feira", "Terça-feira", "Quarta-feira", "Quinta-feira", "Sexta-feira", "Sábado"];
+            const meses = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"];
+
+            const hoje = new Date();
+            const dia = hoje.getDate();
+            const mes = hoje.getMonth();
+            const ano = hoje.getFullYear();
+            const diaSemana = hoje.getDay();
+            
+            const dataFormatada = `${diasDaSemana[diaSemana]}, ${dia} de ${meses[mes]} de ${ano}`;
+            document.getElementById('dataAtual').textContent = dataFormatada;
+        }
+
+        // Chama a função de formatação ao carregar a página
+        window.onload = formatarData;
+
+        async function salvarPDF() {
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
+
+            const nomeAluno = document.getElementById('nomeAluno').value;
+            const serie = document.getElementById('serie').value;
+            const professor = document.getElementById('professor').value;
+            const assinatura = document.getElementById('assinatura').value;
+            const descricao = document.getElementById('descricao').value;
+            const ocorrencias = Array.from(document.querySelectorAll('input[type=checkbox]:checked'))
+                .map(el => el.value)
+                .join(', ');
+
+            doc.text(`Registro de Ocorrência Disciplinar`, 10, 10);
+            doc.text(`Nome do Aluno: ${nomeAluno}`, 10, 20);
+            doc.text(`Série: ${serie}`, 10, 30);
+            doc.text(`Professor: ${professor}`, 10, 40);
+            doc.text(`Assinatura: ${assinatura}`, 10, 50);
+            doc.text(`Ocorrências:`, 10, 60);
+            doc.text(ocorrencias, 10, 70);
+            doc.text(`Descrição:`, 10, 80);
+            doc.text(descricao, 10, 90);
+
+            const nomeArquivo = `Registro_Ocorrencia_${serie}_${professor}.pdf`;
+            doc.save(nomeArquivo);
+        }
+    </script>
+</body>
+</html>

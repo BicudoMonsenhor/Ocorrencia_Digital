@@ -1,100 +1,234 @@
+
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Registro de Ocorrência</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Registro de Ocorrência Disciplinar</title>
   <style>
-    body { background-color: #f1f5f9; }
-    .form-container {
-      max-width: 700px;
-      margin: 40px auto;
-      background: white;
+    * { box-sizing: border-box; }
+    body {
+      background: linear-gradient(135deg, #0078D4 0%, #005A9E 100%);
+      font-family: Arial, sans-serif;
+      margin: 0; padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      min-height: 100vh;
+    }
+    .container {
+      margin-top: 40px;
+      padding: 40px;
+      background-color: #ffffff;
+      border-radius: 12px;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    
+      width: 100%;
+      max-width: 850px;
+      background-color: #f0f0f0;
+      margin: 30px;
       padding: 30px;
       border-radius: 10px;
-      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
     }
+    h2 { text-align: center; color: #333; margin-bottom: 10px; }
+    #dataAtual { text-align: right; font-size: 14px; color: #444; margin-bottom: 20px; }
+    label { font-weight: bold; margin-bottom: 5px; display: block; color: #333; }
+    input[type="text"], select, textarea {
+      width: 100%; padding: 10px; margin-bottom: 15px;
+      border-radius: 5px; border: 1px solid #ccc; font-size: 14px;
+    }
+    .checkbox-group {
+      display: flex; flex-wrap: wrap;
+      gap: 10px; margin-bottom: 20px;
+    }
+    .checkbox-group label {
+      display: flex; align-items: center; gap: 8px;
+      background-color: #e0e0e0; padding: 6px 10px;
+      border-radius: 6px; font-size: 13px; cursor: pointer;
+    }
+    button {
+      display: block;
+      margin-top: 10px;
+    
+      width: 100%; padding: 12px; font-size: 16px;
+      background: linear-gradient(135deg, #0078D4 0%, #005A9E 100%); color: white;
+      border: none; border-radius: 8px; cursor: pointer;
+    }
+    button:hover { background-color: #005A9E; }
   </style>
 </head>
 <body>
+<div class="container">
+  <h2>Registro de Ocorrência Disciplinar</h2>
+  <p id="dataAtual"></p>
 
-<div class="form-container">
-  <h2 class="mb-4 text-center">Registro de Ocorrência</h2>
-  <form onsubmit="salvarOcorrencia(event)">
-    <div class="mb-3">
-      <label class="form-label">Nome do Aluno</label>
-      <input type="text" class="form-control" id="nomeAluno" required />
-    </div>
-    <div class="mb-3">
-      <label class="form-label">Série</label>
-      <select class="form-select" id="serie" required>
-        <option value="">Selecione</option>
-        <option>6º Ano A</option><option>6º Ano B</option><option>7º Ano A</option>
-        <option>7º Ano B</option><option>8º Ano A</option><option>8º Ano B</option>
-        <option>9º Ano A</option><option>9º Ano B</option><option>1ª Série A</option>
-        <option>1ª Série B</option><option>2ª Série A</option><option>2ª Série B</option>
-        <option>3ª Série A</option><option>3ª Série B</option>
-      </select>
-    </div>
-    <div class="mb-3">
-      <label class="form-label">Nome do Professor</label>
-      <input type="text" class="form-control" id="professor" required />
-    </div>
-    <div class="mb-3">
-      <label class="form-label">Descrição da Ocorrência</label>
-      <textarea class="form-control" id="descricao" rows="4" required></textarea>
-    </div>
-    <button class="btn btn-primary" type="submit">Registrar</button>
-  </form>
+  <label for="nomeAluno">Nome do Aluno:</label>
+  <input type="text" id="nomeAluno" />
+
+  <label for="serie">Série:</label>
+  <input type="text" id="serie" />
+
+  <label for="professor">Professor/Funcionário:</label>
+  <select id="professor">
+    <option value="">Selecione o Professor</option>
+    <option>ALINE DAL PONTE SABBAG</option>
+<option>ALINE PRISCILA GARCIA DA SILVA</option>
+<option>ANDREIA DE FATIMA GOMES PIEMONTE</option>
+<option>ANTONIO JOSÉ DO SANTOS JUNIOR</option>
+<option>CAIO HENRIQUE ESTRELA CARDIA</option>
+<option>CLEBER ALBERTO GOMES</option>
+<option>CRISTINA BALDINOTI</option>
+<option>DARLENE MALDONADO DOS SANTOS</option>
+<option>EDCARLOS DOS SANTOS</option>
+<option>EDINEIA APARECIDA DE SOUSA</option>
+<option>ELIANE ANDREA DIOMEDES</option>
+<option>ELIZA GILIOLLI DOS SANTOS</option>
+<option>FELIPE BEIRO DE ALMEIDA</option>
+<option>FLAVIO HENRIQUE CHAVES FILHO</option>
+<option>GABRIEL RODRIGUES DA SILVA</option>
+<option>GISLAINE DIAS CAPUTO</option>
+<option>GRAZIELLE CHRISTINE MARANGONI SCARMANHÃ</option>
+<option>GRAZIELLE DE OLIVEIRA SANTOS</option>
+<option>ITALO BERTONCINI</option>
+<option>IZAIAS NOGUEIRA RODRIGUES</option>
+<option>JANAINA TOGNON</option>
+<option>JAQUELINE PADERES SCORSAFAVA GARCIA</option>
+<option>JOSELILIAN LOPES MIRALHA</option>
+<option>JULIANA DE FATIMA SILVA SEGANTIN</option>
+<option>KAREN REGINA TAN GALINA</option>
+<option>KLEER GONÇALVES DOS SANTOS</option>
+<option>LEANDRO HENRIQUE DE SOUZA BEZERRA</option>
+<option>LUCILENE ARAUJO ROMANIW RAYMUNDO</option>
+<option>LURDES DOS SANTOS ELIAS LIMA</option>
+<option>MAGDA APARECIDA DE OLIVEIRA PRADO</option>
+<option>MARCIA CRISTINA SIGEMURA</option>
+<option>MARCIO ENRIQUE STANCKEVIZ</option>
+<option>MARIA CANDIDA BRANCO DOS SANTOS</option>
+<option>MARIA LUIZA MARTINS DE ARAUJO</option>
+<option>MARIANA PAIVA RAMOS</option>
+<option>MARIANA SAKER DE CASTRO PAIVA</option>
+<option>MATHEUS SANTOS DE OLIVEIRA</option>
+<option>MILCE FERREIRA DE MOURA</option>
+<option>MIRIAM BEIRO DE ALMEIDA</option>
+<option>NATHÁLIA VERONESE MARTINS</option>
+<option>ORIEL DE OLIVEIRA E SILVA</option>
+<option>RAFAEL MARTINS DOS SANTOS</option>
+<option>RAQUEL CRISTINA ROSSIGALLI BOLFI</option>
+<option>RENATO DAVID VALENTE</option>
+<option>RODRIGO BATISTA</option>
+<option>ROSANA APARECIDA ROSSI NOGUEIRA</option>
+<option>SAMUEL MACEDO PERICO</option>
+<option>SAVIA BETHANIA CAVALCANTI</option>
+<option>SILENE BERTASSI</option>
+<option>SONIA MARIA NABAS DOS SANTOS</option>
+<option>SUELI BATISTETTI VICENTE</option>
+<option>SUZANA CARTLA VIANA JANUÁRIO</option>
+<option>VERA CLAUDIA FERRES ANSUINO</option>
+  </select>
+
+  <label>Tipo de Ocorrência:</label>
+  <div class="checkbox-group">
+    <label><input type="checkbox" value="Sem material em sala de aula"/> Sem material em sala de aula</label>
+<label><input type="checkbox" value="Chegou atrasado(a) em sala"/> Chegou atrasado(a) em sala</label>
+<label><input type="checkbox" value="Uso indevido fones e/ou celular"/> Uso indevido fones e/ou celular</label>
+<label><input type="checkbox" value="Conversa e/ou brinca em sala de aula em demasia"/> Conversa e/ou brinca em sala de aula em demasia</label>
+<label><input type="checkbox" value="Não para quieto(a) em seu lugar"/> Não para quieto(a) em seu lugar</label>
+<label><input type="checkbox" value="Desacato/desrespeito ou agressão verbal"/> Desacato/desrespeito ou agressão verbal</label>
+<label><input type="checkbox" value="Dano ao patrimônio público"/> Dano ao patrimônio público</label>
+<label><input type="checkbox" value="Não fez atividades em sala de aula"/> Não fez atividades em sala de aula</label>
+<label><input type="checkbox" value="Dorme em sala de aula"/> Dorme em sala de aula</label>
+<label><input type="checkbox" value="Agressão física"/> Agressão física</label>
+<label><input type="checkbox" value="Outro"/> Outro</label>
+  </div>
+
+  <label for="descricao">Descrição:</label>
+  <textarea id="descricao" rows="4"></textarea>
+
+  <label for="assinatura">Assinatura Digital:</label>
+  <input type="text" id="assinatura" />
+
+  <button onclick="enviarOcorrencia()">Registrar no Firebase</button>
+
+    <button onclick="acessarLista()">Acessar Lista de Ocorrências</button>
 </div>
 
-<!-- Firebase Versão Moderna (Modular) -->
-<script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-app.js";
-    import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-analytics.js";
-    import { getDatabase, ref, push } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-database.js";
-  
-    const firebaseConfig = {
-      apiKey: "AIzaSyBNnS5LP-Ip7z4xfETaq3ky7iBSO0E9aIg",
-      authDomain: "ocorrencia-2db76.firebaseapp.com",
-      databaseURL: "https://ocorrencia-2db76-default-rtdb.firebaseio.com", // ✅ Adicionado
-      projectId: "ocorrencia-2db76",
-      storageBucket: "ocorrencia-2db76.appspot.com",
-      messagingSenderId: "590272746909",
-      appId: "1:590272746909:web:9e387d96eb261fee56cb74",
-      measurementId: "G-YK1PKB4FT3"
-    };
-  
-    const app = initializeApp(firebaseConfig);
-    const analytics = getAnalytics(app);
-    const db = getDatabase(app);
-  
-    // Função para salvar ocorrência
-    window.salvarOcorrencia = function(event) {
-      event.preventDefault();
-      const nomeAluno = document.getElementById('nomeAluno').value;
-      const serie = document.getElementById('serie').value;
-      const professor = document.getElementById('professor').value;
-      const descricao = document.getElementById('descricao').value;
-      const dataHora = new Date().toLocaleString();
-  
-      push(ref(db, 'ocorrencias/'), {
-        nomeAluno,
-        serie,
-        professor,
-        descricao,
-        dataHora
-      })
-      .then(() => {
-        alert("Ocorrência registrada com sucesso!");
-        event.target.reset();
-      })
-      .catch((error) => {
-        alert("Erro ao registrar: " + error.message);
-      });
-    };
-  </script>
-  
+<script>
+  function acessarLista() {
+    const senha = prompt("Digite a senha de acesso:");
+    if (senha === "1234") {
+      window.location.href = "listar.html";
+    } else {
+      alert("Senha incorreta. Acesso negado.");
+    }
+  }
+</script>
+
+<script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore-compat.js"></script>
+<script>
+  const firebaseConfig = {
+    apiKey: "AIzaSyDBe67kG6oru6nUMTrazQFDeMlZWrWZbzY",
+    authDomain: "registro-ocorrencia.firebaseapp.com",
+    projectId: "registro-ocorrencia",
+    storageBucket: "registro-ocorrencia.firebasestorage.app",
+    messagingSenderId: "738928502173",
+    appId: "1:738928502173:web:5fef44bc9d84821682bb74"
+  };
+  firebase.initializeApp(firebaseConfig);
+  const db = firebase.firestore();
+
+  function formatarData() {
+    const hoje = new Date();
+    const dia = String(hoje.getDate()).padStart(2, '0');
+    const mes = String(hoje.getMonth() + 1).padStart(2, '0');
+    const ano = hoje.getFullYear();
+    const hora = hoje.getHours().toString().padStart(2, '0');
+    const minutos = hoje.getMinutes().toString().padStart(2, '0');
+    const dataCompleta = `${dia}/${mes}/${ano} - ${hora}:${minutos}`;
+    document.getElementById('dataAtual').innerText = `Data: ${dataCompleta}`;
+    return dataCompleta;
+  }
+
+  window.onload = formatarData;
+
+  function enviarOcorrencia() {
+    const nomeAluno = document.getElementById('nomeAluno').value;
+    const serie = document.getElementById('serie').value;
+    const professor = document.getElementById('professor').value;
+    const assinatura = document.getElementById('assinatura').value;
+    const descricao = document.getElementById('descricao').value;
+    const dataHora = formatarData();
+    const ocorrencias = Array.from(document.querySelectorAll('input[type=checkbox]:checked')).map(el => el.value);
+    if (!nomeAluno || !serie || !professor || !assinatura) {
+      alert("Preencha todos os campos obrigatórios!");
+      return;
+    }
+    db.collection("ocorrencias").add({
+      nomeAluno, serie, professor, assinatura, descricao, ocorrencias, dataHora
+    }).then(() => {
+      alert("Ocorrência registrada com sucesso!");
+      location.reload();
+    }).catch((error) => {
+      console.error("Erro:", error);
+      alert("Erro ao registrar ocorrência.");
+    });
+  }
+</script>
+
+<hr>
+<button onclick="acessarLista()">🔒 Acessar Lista de Ocorrências</button>
+
+<script>
+function acessarLista() {
+  const senha = prompt("Digite a senha para acessar a lista:");
+  if (senha === "admin123") {
+    window.location.href = "listar.html";
+  } else {
+    alert("Senha incorreta. Acesso negado.");
+  }
+}
+</script>
+
 </body>
 </html>

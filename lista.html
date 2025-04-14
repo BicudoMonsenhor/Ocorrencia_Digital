@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Lista de Ocorrências</title>
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
+    import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyDBe67kG6oru6nUMTrazQFDeMlZWrWZbzY",
+      authDomain: "registro-ocorrencia.firebaseapp.com",
+      projectId: "registro-ocorrencia",
+      storageBucket: "registro-ocorrencia.firebasestorage.app",
+      messagingSenderId: "738928502173",
+      appId: "1:738928502173:web:5fef44bc9d84821682bb74"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    async function carregarOcorrencias(filtro = "") {
+      const querySnapshot = await getDocs(collection(db, "ocorrencias"));
+      const lista = document.getElementById("lista");
+      lista.innerHTML = "";
+
+      querySnapshot.forEach((doc) => {
+        const dados = doc.data();
+        if (filtro === "" || dados.nome.toLowerCase().includes(filtro.toLowerCase())) {
+          const item = document.createElement("li");
+          item.innerHTML = `<strong>Aluno:</strong> ${dados.nome} |
+            <strong>Ocorrência:</strong> ${dados.ocorrencia} |
+            <strong>Professor:</strong> ${dados.professor}`;
+          lista.appendChild(item);
+        }
+      });
+    }
+
+    window.onload = () => {
+      document.getElementById("buscar").addEventListener("click", () => {
+        const nome = document.getElementById("filtroNome").value;
+        carregarOcorrencias(nome);
+      });
+
+      carregarOcorrencias();
+    };
+  </script>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h2>Lista de Ocorrências Registradas</h2>
+    <input type="text" id="filtroNome" placeholder="Filtrar por nome do aluno">
+    <button id="buscar">Buscar</button>
+    <ul id="lista"></ul>
+  </div>
+</body>
+</html>
